@@ -61,8 +61,8 @@ window.syntaxHighlight = function(sentences) {
 
 	var hasMicroSubject = function(sentence) {
 		return ( _.has(sentence, 'subject') ) &&
-			( sentence.subject.components.length === 1 ) &&
-			( _.contains(['mi', 'sina'], sentence.subject.components[0].head) );
+			( sentence.subject.components.length === 1 && _.isUndefined(sentence.subject.components[0].complements) ) &&
+			( sentence.subject.components[0].head === 'mi' || sentence.subject.components[0].head === 'mi' );
 	}
 
 	var unpackSubject = function(sentence) {

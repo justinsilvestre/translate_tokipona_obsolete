@@ -22,4 +22,6 @@ window.jsonObj = <%= raw(@document.json) %>;
 $(function() {
 $('#text').html(syntaxHighlight(<%= raw(@document.json) %>));
 });
+window.orig = '<%= j(@document.original_text) %>';
+console.log(window.orig)
 </script>
