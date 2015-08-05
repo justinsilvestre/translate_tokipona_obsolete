@@ -1,5 +1,6 @@
 require_relative 'clause'
 require_relative 'vocative'
+require_relative 'context'
 
 class Sentence
 	# remember to enforce proper capitalization
@@ -96,17 +97,5 @@ class Sentence
 		@analysis[:end_punctuation] = end_punctuation
 		@analysis[:mood] = mood
 		@analysis
-	end
-
-	def color_analysis
-		@color = {}
-		@color[:taso] = 'taso' if original_text.match(/^taso/)
-		@color[:vocative] = vocative.words.join(' ') if vocative
-		@color[:context] = context.words.join(' ') if context
-		@color[:subject] = subject.words if subject
-		@color[:predicate] = predicate.words
-		@color[:emphatic] = emphatic if emphatic
-		@color[:end_punctuation] = end_punctuation
-		@color
 	end
 end

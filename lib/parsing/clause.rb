@@ -2,6 +2,7 @@ require_relative 'subject'
 require_relative 'predicate'
 
 class Clause
+
 	attr_accessor :words
 	def initialize(original, options={})
 		self.words = original
@@ -9,6 +10,10 @@ class Clause
 
 	def is_context?
 		words.last == 'la'
+	end
+
+	def initial_index
+		subject.nil? ? 0 : subject.words.length
 	end
 
 	def final_index
@@ -25,10 +30,13 @@ class Clause
 
 	def subject
 		return @subject if defined? @subject
-		if (words.include? 'o') || (words.include? 'li')
-			@subject = Subject.new words[0...words.index(modal_particle)]
+		if words.include? 'o'
+			i = words.index 'o'
+			@subject = i == 0 ? nil : Subject.new(words[0...i]) 
+		elsif words.include? 'li'
+			@subject = Subject.new words[0...words.index('li')]
 		elsif %w'mi sina'.include? words.first
-			@subject = Subject.new([ words.first ])
+			@subject = Subject.new [words.first]
 		else
 			@subject = nil
 		end
@@ -36,13 +44,13 @@ class Clause
 
 	def predicate
 		return @predicate if defined? @predicate
-		predicate_words = subject.nil? ? words : words[subject.words.length..final_index]
-		@predicate = Predicate.new predicate_words, modal_particle
+		@predicate = Predicate.new words[initial_index..final_index], modal_particle
 	end
 
 	def analysis
 		@analysis = {}
 		@analysis[:subject] = subject.analysis if subject
 		@analysis[:predicate] = predicate.analysis
+		@analysis
 	end
 end

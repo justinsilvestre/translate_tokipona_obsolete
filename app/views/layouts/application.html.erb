@@ -2,25 +2,29 @@
 <html>
 <head>
   <title>Translate Toki Pona</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,500,700,900' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  
 </head>
 <body>
 
-	<% if user_signed_in? %>
-		<p>jan <%= current_user.username %> o, toki!</p>
-		<%= link_to 'Log out', destroy_user_session_path, method: 'delete' %>
-	<% else %>
-		<%= link_to 'Log in', user_session_path, method: 'post' %>
-		<%= link_to 'Sign up', new_user_registration_path %>
-	<% end %>
-
+	<header>
+		<% if user_signed_in? %>
+			<p>jan <%= current_user.username %> o, toki!</p>
+			<%= link_to 'Log out', destroy_user_session_path, method: 'delete' %>
+		<% else %>
+			<%= link_to 'Log in', user_session_path, method: 'post' %>
+			<%= link_to 'Sign up', new_user_registration_path %>
+		<% end %>
+	</header>
  <p class="notice"><%= notice %></p>
  <p class="alert"><%= alert %></p>
 
-
-<%= yield %>
+ <div class="main-wrapper">
+	<%= yield %>
+ </div>
 
 </body>
 </html>

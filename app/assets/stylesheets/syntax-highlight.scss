@@ -1,0 +1,64 @@
+.syntax-highlight {
+
+	.sentence {
+		display: inline-block;
+	}
+
+	.vocative {}
+
+	.context {
+		color: #D8AACA;
+
+		.subject {
+			color: #D8AACA;
+			.complement {
+				color: inherit;
+			}
+		}
+		.predicate {
+			color: #EA8D9E;
+			.complement {
+				color: inherit;
+			}
+		}
+	}
+
+	.subject {
+		color: #A3AB8D;
+		.complement {
+			color: #868A7B;
+		}
+	}
+
+	.predicate {
+		color: #4682B4;
+
+		.modal-particle {
+		}
+
+		.negative {
+			color: #8B64A0;
+		}
+
+		.complement {
+			color: #5AAACE
+		}
+	}
+
+	.interrogative { font-weight: bold; }
+	.emphatic { color: red;}
+
+	.direct-object {
+				color: #7DAB4E;
+		.complement {
+			color: #409E6B;
+			.complement {
+		color: #40929E;
+			}
+		}
+	}
+
+	.modal-particle, .object-particle, .pi {
+		font-weight: 100;
+	}
+}

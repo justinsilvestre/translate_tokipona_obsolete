@@ -11,6 +11,11 @@
  * file per style scope.
  *
  *= require normalize-rails
- *= require_tree .
+ *= require sitewide
+ *= require syntax-highlight
+ * reeequire_tree .
  *= require_self
  */
+
+
+

@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require underscore
+//= require syntax_highlight
 //= require_tree .
