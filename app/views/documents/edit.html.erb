@@ -2,5 +2,8 @@
 
 <%= render 'form' %>
 
+<% if @document.user == current_user %>
+<%= link_to 'Delete', document_path(@document), method: 'delete' %> | 
+<% end %>
 <%= link_to 'Show', @document %> |
 <%= link_to 'Back', documents_path %>

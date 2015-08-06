@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'normalize-rails'
 gem 'underscore-rails'
 
+gem 'tokipona', '0.0.1', git: 'https://github.com/justinsilvestre/tokipona.git'
+
 gem 'verbs'
 gem 'plural'
 gem 'devise'

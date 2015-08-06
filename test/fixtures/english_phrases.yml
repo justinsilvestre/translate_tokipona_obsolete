@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tokipona_phrase_id: 
+  pos: MyString
+  forms: MyText
+  base_form: MyString
+  forms: MyText
+  user_id: 
+  uses: 1
+  upvotes: 1
+
+two:
+  tokipona_phrase_id: 
+  pos: MyString
+  forms: MyText
+  base_form: MyString
+  forms: MyText
+  user_id: 
+  uses: 1
+  upvotes: 1

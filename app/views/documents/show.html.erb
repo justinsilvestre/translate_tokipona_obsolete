@@ -12,8 +12,11 @@
   <div id="text" class="syntax-highlight"><%= @document.original_text %></div>
 </p>
 
+<% if user_signed_in? %>
+<%= link_to 'Translate', new_document_translation_path(@document) %> |
+<% end %>
 <% if @document.user == current_user %>
-<%= link_to 'Delete', document_path(@document), method: 'delete' %> | 
+<%= link_to 'Edit', edit_document_path(@document) %> | 
 <% end %>
 <%= link_to 'Back', documents_path %>
 

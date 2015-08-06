@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  translation_id: 
+  place: 1
+  english_phrase_id: 
+  english_form: MyString
+
+two:
+  translation_id: 
+  place: 1
+  english_phrase_id: 
+  english_form: MyString

@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require_relative '../lib/word_list.rb'
+
+tokipona_phrases = TokiponaPhrase.create(TOKIPONA_WORDS.map.with_index do |word, i|
+		{ words: "#{i}", length: 1 }
+	end)

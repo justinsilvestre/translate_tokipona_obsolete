@@ -82,12 +82,21 @@ window.syntaxHighlight = function(sentences) {
 
 	_.each(sentences, function(sentence) {
 		result += '<p class="sentence">'
-		// if ( !_.isUndefined(sentence.vocative) ) result += span('vocative', unpackSubstantive(sentence) + ' o');
-		if ( !_.isUndefined(sentence.context) ) result += span('context', unpackContext(sentence) + ' la ');
-		if ( !_.isUndefined(sentence.subject) ) result += span('subject', unpackSubject(sentence) + ' ');
-		if ( !_.isUndefined(sentence.predicate) ) result += span('predicate', unpackPredicate(sentence));
+		if ( !_.isUndefined(sentence.vocative) ) {
+			result += span('vocative', unpackSubstantive(sentence.vocative) + ' o');
+			if (!_.isUndefined(sentence.predicate)) result += ','
+		}
+		if ( !_.isUndefined(sentence.taso) ) result += span('context', ' taso');
+		if ( !_.isUndefined(sentence.context) ) result += span('context', ' ' + unpackContext(sentence) + span('la',' la'));
+		if ( !_.isUndefined(sentence.subject) ) result += span('subject', ' ' + unpackSubject(sentence) + ' ');
+		if ( !_.isUndefined(sentence.predicate) ) result += span('predicate', ' ' + unpackPredicate(sentence));
 		if ( !_.isUndefined(sentence.emphatic) ) result += span('emphatic', ' ' + sentence.emphatic)
-		if ( !_.isUndefined(sentence.end_punctuation) ) result += sentence.end_punctuation + '</p> '; 
+		if ( sentence.end_punctuation != '' ) {
+			result += sentence.end_punctuation;
+		} else {
+			result += '.'
+		}
+		result += '</p> '; 
 	});
 
 	return result;

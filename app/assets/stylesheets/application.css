@@ -13,7 +13,7 @@
  *= require normalize-rails
  *= require sitewide
  *= require syntax-highlight
- * reeequire_tree .
+ *= require_tree .
  *= require_self
  */
 

@@ -1,5 +1,6 @@
 class Document < ActiveRecord::Base
   belongs_to :user
+  has_many :translations
 
   validates :title, presence: true
 
@@ -8,7 +9,7 @@ class Document < ActiveRecord::Base
   private
 
   def set_json
-  	require_relative '../../lib/parsing/parsing'
+  	require 'tokipona'
   	self.json = Parsing.new(original_text).json
   end
 end

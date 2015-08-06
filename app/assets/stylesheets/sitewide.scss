@@ -4,11 +4,32 @@ body {
 	background-color: aliceblue;
 }
 
+a {
+	color: #D6B554;
+	text-decoration: none;
+	&:hover {
+		color: #F3B600;
+	}
+}
+
+
+
 $base-width: 800px;
 
 header {
 	max-width: $base-width;
 	margin: 0 auto;
+	a {
+		color: cadetblue;
+	}
+	padding: 1rem;
+	text-align: right;
+}
+
+.flash {
+	max-width: $base-width;
+	margin: 0 auto;
+	padding: 1rem;
 }
 
 .main-wrapper {

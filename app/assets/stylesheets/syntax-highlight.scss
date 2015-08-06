@@ -4,7 +4,9 @@
 		display: inline-block;
 	}
 
-	.vocative {}
+	.vocative {
+		color: #C7BC0B;
+	}
 
 	.context {
 		color: #D8AACA;
@@ -58,7 +60,7 @@
 		}
 	}
 
-	.modal-particle, .object-particle, .pi {
+	.modal-particle, .object-particle, .pi, .la {
 		font-weight: 100;
 	}
 }
