@@ -1,4 +1,8 @@
-<%= form_for(@translation) do |f| %>
+<script>
+  app.value('translationData', <%= raw @translation.javascript_object %>)
+</script>
+
+<%= form_for(@translation, html: {'ng-controller' => 'translationController as translation' }) do |f| %>
   <% if @translation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@translation.errors.count, "error") %> prohibited this translation from being saved:</h2>
@@ -10,6 +14,8 @@
       </ul>
     </div>
   <% end %>
+
+  <translation-segment></translation-segment>
 
   <div class="field">
     <%= f.label :translation_segments %><br>

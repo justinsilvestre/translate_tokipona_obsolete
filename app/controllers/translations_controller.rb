@@ -2,10 +2,11 @@ class TranslationsController < ApplicationController
   before_action :set_translation, only: [:show, :edit, :update, :destroy]
   before_action :set_document
 
+
   # GET /translations
   # GET /translations.json
   def index
-    @translations = Translation.all
+    @translations = @document ? @document.translations : Translation.all
   end
 
   # GET /translations/1
@@ -15,7 +16,7 @@ class TranslationsController < ApplicationController
 
   # GET /translations/new
   def new
-    @translation = @document.translations.new
+    @translation = @document.translations.build
   end
 
   # GET /translations/1/edit
@@ -69,7 +70,7 @@ class TranslationsController < ApplicationController
     end
 
     def set_document
-      @document = Document.find params[:document_id]
+      @document = params[:document_id] ? Document.find(params[:document_id]) : nil
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

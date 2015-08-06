@@ -8,6 +8,6 @@
 
 require_relative '../lib/word_list.rb'
 
-tokipona_phrases = TokiponaPhrase.create(TOKIPONA_WORDS.map.with_index do |word, i|
-		{ words: "#{i}", length: 1 }
+tokipona_phrases = TokiponaPhrase.create(TOKIPONA_WORDS.values.uniq.map do |words|
+		{ words: "#{word}", length: 1 }
 	end)
