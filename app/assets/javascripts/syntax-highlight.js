@@ -4,11 +4,11 @@ window.syntaxHighlight = function(sentences) {
 	var unpackSubstantive = function(substantive) {
 		var result = '';
 		if (_.has(substantive, 'interrogative')) {
-			result += span('interrogative', substantive.head + ' ala ' + substantive.head);
+			result += span('interrogative', span('h',substantive.head) + ' ala ' + substantive.head);
 		} else if (_.has(substantive, 'negative')) {
-			result += substantive.head + span('negative',' ala');
+			result += span('h',substantive.head) + span('negative',' ala');
 		} else {
-			result += substantive.head;
+			result += span('h',substantive.head);
 		}
 		if (_.has(substantive, 'complements')) {
 			_.each(substantive.complements, function(complement) {
@@ -80,8 +80,8 @@ window.syntaxHighlight = function(sentences) {
 		return result;
 	};
 
-	_.each(sentences, function(sentence) {
-		result += '<p class="sentence">'
+	var unpackSentence = function(sentence) {
+		var result = '<p class="sentence">'
 		if ( !_.isUndefined(sentence.vocative) ) {
 			result += span('vocative', unpackSubstantive(sentence.vocative) + ' o');
 			if (!_.isUndefined(sentence.predicate)) result += ','
@@ -96,8 +96,16 @@ window.syntaxHighlight = function(sentences) {
 		} else {
 			result += '.'
 		}
-		result += '</p> '; 
-	});
+		return result + '</p> '; 
+	}
 
-	return result;
+	if (_.isArray(sentences)) {
+		_.each(sentences, function(sentence) {
+			result += unpackSentence(sentence);
+		});
+
+		return result;
+	} else {
+		return unpackSentence(sentences);
+	}
 }

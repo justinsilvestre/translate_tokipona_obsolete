@@ -1,5 +1,5 @@
 <script>
-  app.value('translationData', <%= raw @translation.javascript_object %>)
+  app.value('translationData', <%= raw @translation.javascript_object %>);
 </script>
 
 <%= form_for(@translation, html: {'ng-controller' => 'translationController as translation' }) do |f| %>
