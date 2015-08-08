@@ -1,7 +1,7 @@
 body { 
 	font-size: 18px;
 	font-family: 'Roboto';
-	background-color: aliceblue;
+	background-color: #E9F4FE;
 }
 
 a {
@@ -12,6 +12,41 @@ a {
 	}
 }
 
+h1, h2 {
+	text-align: center;
+}
+
+input[type=submit] {
+	background-color: #85A4B5;
+	&:hover { background-color: #D2DDE5}
+	border: 0;
+	color: white;
+	padding: .3em;
+	-webkit-border-radius	: .2em;
+	-moz-border-radius		: .2em;
+	-ms-border-radius			: .2em;
+	-o-border-radius			: .2em;
+	border-radius					: .2em;
+}
+
+form {
+	input[type=submit] {
+		margin-top: 1rem;
+	}
+	input[type=email], input[type=password], input[type=text], input[type=submit], textarea {
+		margin-bottom: .8em;
+		display: block;
+	}
+	label {
+		font-size: .9rem;
+	}
+	em {
+		font-size: .8rem;
+	}
+	textarea {
+		width: 100%;
+	}
+}
 
 
 $base-width: 800px;
@@ -19,11 +54,22 @@ $base-width: 800px;
 header {
 	max-width: $base-width;
 	margin: 0 auto;
-	a {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing		: border-box;
+	box-sizing				: border-box;
+	padding: 1rem 2.4rem;
+
+		overflow: auto;
+
+	nav {
+		float: right;
 		color: cadetblue;
+
+		a {
+			color: inherit;
+			padding-left: 1.5rem;
+		}
 	}
-	padding: 1rem;
-	text-align: right;
 }
 
 .flash {
@@ -35,9 +81,13 @@ header {
 .main-wrapper {
 	max-width: $base-width;
 	margin: 0 auto;
-	box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing		: border-box;
+		box-sizing				: border-box;
 	padding: 3.2rem;
 
 	background-color: white;
 	border-radius: 1rem;
 }
+
+.devise-links { text-align: center; }

@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require angular/angular
+//= require angular-sanitize/angular-sanitize
 //= require underscore
 //= require syntax-highlight
 //= require_tree .

@@ -11,13 +11,15 @@
 <body class="<%= yield(:body_class) %>">
 
 	<header>
-		<% if user_signed_in? %>
-			<p>jan <%= current_user.username %> o, toki!</p>
-			<%= link_to 'Log out', destroy_user_session_path, method: 'delete' %>
-		<% else %>
-			<%= link_to 'Log in', new_user_session_path %>
-			<%= link_to 'Sign up', new_user_registration_path %>
-		<% end %>
+		<nav>	
+			<% if user_signed_in? %>
+				<p>jan <%= current_user.username %> o, toki!</p>
+				<%= link_to 'Log out', destroy_user_session_path, method: 'delete' %>
+			<% else %>
+				<%= link_to 'Log in', new_user_session_path %>
+				<%= link_to 'Sign up', new_user_registration_path %>
+			<% end %>
+		</nav>
 	</header>
 
 	<% flash.each do |key, msg| %>

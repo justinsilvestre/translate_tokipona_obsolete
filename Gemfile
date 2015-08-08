@@ -27,6 +27,8 @@ gem 'underscore-rails'
 
 gem 'tokipona', '0.0.1', git: 'https://github.com/justinsilvestre/tokipona.git'
 
+gem 'bower-rails'
+
 gem 'verbs'
 gem 'plural'
 gem 'devise'
@@ -58,5 +60,7 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'sqlite3'
+	gem 'guard-livereload', '~> 2.4', require: false
+	gem "rack-livereload"
 end
 
