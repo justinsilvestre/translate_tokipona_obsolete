@@ -12,8 +12,6 @@ window.syntaxHighlight = function(sentences) {
 		}
 		if (_.has(substantive, 'complements')) {
 			_.each(substantive.complements, function(complement) {
-				// how to implement pi
-
 				if (_.has(complement, 'complements')) result += span('pi',' pi');
 
 				result += ' ' + span('complement', unpackSubstantive(complement));
@@ -32,18 +30,19 @@ window.syntaxHighlight = function(sentences) {
 	var unpackContext = function(sentence) {
 		var result = '';
 		var context = sentence.context;
+		context.mood = 'indicative';
 		if ( !_.isUndefined(context.subject) ) result += span('subject', unpackSubject(context) + ' ');
 		if ( !_.isUndefined(context.predicate) ) result += span('predicate', unpackPredicate(context) + ' ');
 		return result;
 	};
 
-	var unpackPredicate = function(sentence) {
+	var unpackPredicate = function(clause) {
 		var result = '';
-		var components = sentence.predicate;
+		var components = clause.predicate;
 		_.each(components, function(component, i) {
 			if (i > 0) result += ' ';
-			if (sentence.mood === 'optative') result += span('modal-particle', 'o ');
-			if ((sentence.mood === 'indicative') && ( (i > 0) || (_.has(sentence,'subject') && !hasMicroSubject(sentence)) ))
+			if (clause.mood === 'optative') result += span('modal-particle', 'o ');
+			if ((clause.mood === 'indicative') && ( (i > 0) || (_.has(clause,'subject') && !hasMicroSubject(clause)) ))
 				{ result += span('modal-particle','li '); }
 			result += unpackSubstantive(component);
 		});
@@ -62,7 +61,7 @@ window.syntaxHighlight = function(sentences) {
 	var hasMicroSubject = function(sentence) {
 		return ( _.has(sentence, 'subject') ) &&
 			( sentence.subject.components.length === 1 && _.isUndefined(sentence.subject.components[0].complements) ) &&
-			( sentence.subject.components[0].head === 'mi' || sentence.subject.components[0].head === 'mi' );
+			( sentence.subject.components[0].head === 'mi' || sentence.subject.components[0].head === 'sina' );
 	}
 
 	var unpackSubject = function(sentence) {

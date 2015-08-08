@@ -1,6 +1,7 @@
 class TranslationsController < ApplicationController
   before_action :set_translation, only: [:show, :edit, :update, :destroy]
   before_action :set_document
+  before_action :own_document, only: [:edit, :update, :destroy]
 
 
   # GET /translations
@@ -27,6 +28,7 @@ class TranslationsController < ApplicationController
   # POST /translations.json
   def create
     @translation = @document.translations.new(translation_params)
+    @translation.user_id = current_user.id
 
     respond_to do |format|
       if @translation.save
@@ -71,6 +73,12 @@ class TranslationsController < ApplicationController
 
     def set_document
       @document = params[:document_id] ? Document.find(params[:document_id]) : nil
+    end
+
+    def own_translation
+      unless current_user == @translation.user
+        redirect_to @translation
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
