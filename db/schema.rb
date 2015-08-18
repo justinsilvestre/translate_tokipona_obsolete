@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806172759) do
+ActiveRecord::Schema.define(version: 20150814222701) do
 
   create_table "documents", force: :cascade do |t|
     t.integer  "user_id"
-    t.text     "json"
+    t.text     "tree"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.text     "original_text"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150806172759) do
 
   create_table "english_phrases", force: :cascade do |t|
     t.integer  "tokipona_phrase_id"
-    t.string   "pos"
+    t.string   "role"
     t.text     "forms"
     t.string   "base_form"
     t.integer  "user_id"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150806172759) do
     t.datetime "updated_at",                     null: false
   end
 
-  add_index "english_phrases", ["base_form"], name: "index_english_phrases_on_base_form", unique: true
+  add_index "english_phrases", ["tokipona_phrase_id", "role"], name: "index_english_phrases_on_tokipona_phrase_id_and_role"
   add_index "english_phrases", ["tokipona_phrase_id"], name: "index_english_phrases_on_tokipona_phrase_id"
   add_index "english_phrases", ["user_id"], name: "index_english_phrases_on_user_id"
 
@@ -57,9 +57,10 @@ ActiveRecord::Schema.define(version: 20150806172759) do
     t.text     "full_form"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "role"
   end
 
-  add_index "tokipona_phrases", ["words"], name: "index_tokipona_phrases_on_words", unique: true
+  add_index "tokipona_phrases", ["words", "role"], name: "index_tokipona_phrases_on_words_and_role", unique: true
 
   create_table "translation_segments", force: :cascade do |t|
     t.integer  "translation_id"
@@ -77,9 +78,9 @@ ActiveRecord::Schema.define(version: 20150806172759) do
   create_table "translations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "document_id"
-    t.text     "translation_segments"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.text     "analysis"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "translations", ["document_id"], name: "index_translations_on_document_id"

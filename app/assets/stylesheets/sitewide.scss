@@ -65,9 +65,12 @@ header {
 		float: right;
 		color: cadetblue;
 
+		span {
+			padding-left: 1.5rem;
+		}
+
 		a {
 			color: inherit;
-			padding-left: 1.5rem;
 		}
 	}
 }
@@ -88,6 +91,10 @@ header {
 
 	background-color: white;
 	border-radius: 1rem;
+
+	nav.pagination {
+		text-align: right;
+	}
 }
 
 .devise-links { text-align: center; }

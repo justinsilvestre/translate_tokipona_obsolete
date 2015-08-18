@@ -1,7 +1,8 @@
 class TranslationsController < ApplicationController
   before_action :set_translation, only: [:show, :edit, :update, :destroy]
   before_action :set_document
-  before_action :own_document, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show, :new]
+  before_action :own_translation, only: [:edit, :update, :destroy]
 
 
   # GET /translations

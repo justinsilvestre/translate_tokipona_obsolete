@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require underscore
 //= require angular/angular
 //= require angular-sanitize/angular-sanitize
-//= require underscore
+//= require angular-off-click/offClick
+//= require translation-editor
 //= require syntax-highlight
+//= require tokipona-english
 //= require_tree .

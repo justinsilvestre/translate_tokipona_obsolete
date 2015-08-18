@@ -6,11 +6,14 @@
 	
 	#documents-list {
 		list-style-type: none;
-		a {
-			color: #8A7F5D;
-			&:hover {
-			 color: #F3B600;
-			 }
+		h2 {
+			text-align: left;
+		 & a {
+				color: #8A7F5D;
+				&:hover {
+				 color: #F3B600;
+				 }
+			}
 		}
 	}
 

@@ -3,21 +3,40 @@
 <head>
   <title>Translate Toki Pona</title>
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,500,700,900' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
+
+  <script type="text/ng-template" id="substantiveTemplate">
+		<span ng-class="{complement: substantive.kind === 'complement'}">
+			<span class="pi" ng-if="substantive.kind === 'complement' && substantive.complements">pi</span>
+			<span class="modal-particle" ng-if="substantive.kind === 'predicate' && !hasMicroSubject(clause) && (clause.subject || modalParticle(clause) === 'o')">{{ modalParticle(clause) }}</span>
+			<span class="h" ng-class="{highlighted: substantive.highlighted}">{{ substantive.head }}</span>
+			<span class="substantive" ng-if="substantive.complements">
+				<span ng-repeat="substantive in substantive.complements" ng-init="substantive.kind = 'complement'" ng-include="'substantiveTemplate'"></span>
+			</span>
+			<span class="direct-object" ng-repeat="substantive in substantive.direct_objects"><span class="object-particle">e</span>
+				<span ng-include="'substantiveTemplate'"></span>
+			</span>
+			<span class="gerundive" ng-if="substantive.gerundive" ng-init="substantive = substantive.gerundive">
+				<span ng-include="'substantiveTemplate'"></span>
+			</span>
+			<span class="prepositional-object" ng-if="substantive.prepositional_object" ng-init="substantive = substantive.prepositional_object">
+				<span ng-include="'substantiveTemplate'"></span>
+			</span>
+		</span>
+  </script>
   
 </head>
-<body class="<%= yield(:body_class) %>">
-
+<body class="<%= yield(:body_class) %>" ng-controller="<%= yield (:ng_controller) %>">
 	<header>
 		<nav>	
 			<% if user_signed_in? %>
-				<p>jan <%= current_user.username %> o, toki!</p>
-				<%= link_to 'Log out', destroy_user_session_path, method: 'delete' %>
+				<span>jan <%= current_user.username %> o, toki!</span>
+				<span><%= link_to 'Log out', destroy_user_session_path, method: 'delete' %></span>
 			<% else %>
-				<%= link_to 'Log in', new_user_session_path %>
-				<%= link_to 'Sign up', new_user_registration_path %>
+				<span><%= link_to 'Log in', new_user_session_path %></span>
+				<span><%= link_to 'Sign up', new_user_registration_path %></span>
 			<% end %>
 		</nav>
 	</header>

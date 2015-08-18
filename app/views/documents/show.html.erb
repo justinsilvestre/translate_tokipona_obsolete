@@ -1,13 +1,15 @@
+<% content_for :ng_controller, "showDocumentController" %>
+
 <h1><%= @document.title %></h1>
 
 <p>
   jan <%= @document.user.username %> li pali e ni.
   <br>
   <small>by <%= @document.user.username %></small>
-</p>
+</p
 
 <p>
-  <div id="text" class="syntax-highlight"><%= @document.original_text %></div>
+  <div id="text" class="syntax-highlight"><tp-sentence ng-repeat="sen in documentAnalysis" sen="sen"><%= @document.original_text %></tp-sentence></div>
 </p>
 
 
@@ -18,10 +20,9 @@
 <%= link_to 'Back', documents_path %>
 
 <script>
-window.jsonObj = <%= raw(@document.json) %>;
-$(function() {
-$('#text').html(syntaxHighlight(<%= raw(@document.json) %>));
-});
+app.value('documentAnalysis', <%= raw(@document.tree) %>);
+
+window.jsonObj = <%= raw(@document.tree) %>;
 window.orig = '<%= j(@document.original_text) %>';
 console.log(window.orig)
 </script>

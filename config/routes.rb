@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'users/show'
 
+  get 'tp_en/:tokipona_phrase_id/(:practical_role)' => 'english_phrases#from_tokipona', as: :tp_en, defaults: { format: 'json'}
+
   resources :documents do
     resources :translations, shallow: true
   end

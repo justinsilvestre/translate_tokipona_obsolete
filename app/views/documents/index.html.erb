@@ -2,6 +2,8 @@
 
 <h1>lipu pi toki pona <small>Toki Pona texts</small></h1>
 
+<%= paginate @documents %>
+
 <ul id="documents-list">
   
   <% @documents.each do |document| %>
@@ -9,7 +11,8 @@
   <li>
     <h2><%= link_to document.title, document %></h2>
     <p>by <%= link_to document.user.username, "#" %></p>
-    <p><%= truncate(document.original_text, length: 50) %></p>
+    <p><%= truncate(document.original_text, length: 140, omission: '...', separator: ' ') %>
+    	<%= link_to('awen', document) %></p>
   </li>
 
   <% end %>

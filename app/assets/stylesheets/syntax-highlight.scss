@@ -1,7 +1,17 @@
+
 .syntax-highlight {
 
 	.sentence {
 		display: inline-block;
+		padding-left: .3em;
+
+		.highlighted {
+			color: #E8E830 !important;
+		}
+
+		.end-punct {
+			position: relative; right: .2em;
+		}
 	}
 
 	.vocative {
@@ -14,13 +24,34 @@
 		.subject {
 			color: #D8AACA;
 			.complement {
-				color: inherit;
+				color: #D08ABB;
+				.complement {
+					color: #CA60AA;
+				}
 			}
 		}
 		.predicate {
 			color: #EA8D9E;
 			.complement {
-				color: inherit;
+				color: #F07D92;
+				.complement {
+					color: #FB6A84;
+				}
+			}
+			.negative {
+				color: #D25C35;
+			}
+		}
+
+
+
+		.direct-object {
+			color: #AB934E;
+			.complement {
+				color: #B77F38;
+				.complement {
+					color: #B86F37;
+				}
 			}
 		}
 	}

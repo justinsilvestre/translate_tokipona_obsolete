@@ -7,7 +7,5 @@ class CreateTokiponaPhrases < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-
-    add_index :tokipona_phrases, :words, unique: true
   end
 end

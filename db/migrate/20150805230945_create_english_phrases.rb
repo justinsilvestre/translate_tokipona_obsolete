@@ -12,6 +12,5 @@ class CreateEnglishPhrases < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :english_phrases, :base_form, unique: true
   end
 end

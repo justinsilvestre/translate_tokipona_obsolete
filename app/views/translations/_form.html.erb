@@ -1,8 +1,12 @@
+<% content_for(:ng_controller, 'translationController as translation') %>
+<% content_for(:body_class, 'global-events') %>
+
 <script>
-  app.value('translationData', <%= raw @translation.javascript_object %>);
+  app.value('analysis', <%= raw @translation.analysis %>);
+  app.value('documentAnalysis', <%= raw @translation.document.tree %>)
 </script>
 
-<%= form_for(@translation, html: {'ng-controller' => 'translationController as translation' }) do |f| %>
+<%= form_for [@document, @translation] do |f| %>
   <% if @translation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@translation.errors.count, "error") %> prohibited this translation from being saved:</h2>
@@ -15,11 +19,11 @@
     </div>
   <% end %>
 
-  <translation-segment></translation-segment>
+  <translation></translation>
 
   <div class="field">
-    <%= f.label :translation_segments %><br>
-    <%= f.text_area :translation_segments %>
+    <%= f.label :analysis %><br>
+    <%= f.text_area :analysis %>
   </div>
   <div class="actions">
     <%= f.submit %>

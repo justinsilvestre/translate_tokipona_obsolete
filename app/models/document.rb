@@ -1,5 +1,6 @@
 class Document < ActiveRecord::Base
 	require 'json'
+	include EachHead
 
   belongs_to :user
   has_many :translations, dependent: :destroy
@@ -7,37 +8,34 @@ class Document < ActiveRecord::Base
   validates :title, presence: true
   validates :original_text, presence: true
 
-  before_save :set_json, :prepare_words
+  before_save :set_tree, :prepare_words, :index_heads
 
-  def set_json
+  def set_tree
   	require 'tokipona'
-  	self.json = Parsing.new(original_text).json
+  	self.tree = Parsing.new(original_text).json
   end
 
   # private
 
+  def index_heads
+  end
+
 	def prepare_words
 		extraction = []
-		JSON.parse(json).each do |sentence|
+		JSON.parse(tree).each do |sentence|
 			extraction += extract_words(sentence)
 		end
 		self.words = extraction.join ','
 	end
 
+	def parsed_tree
+		@parsed_tree ||= JSON.parse(tree)
+	end
+
 	def extract_words(collection)
 		heads = []
-		if collection.is_a? Array
-			collection.each do |element|
-				heads += extract_words(element)
-			end
-		else
-			collection.each do |k, v|
-				if k == 'head'
-					heads << v
-				elsif (v.is_a? Array) || (v.is_a? Hash)
-					heads += extract_words(v)
-				end
-			end
+		each_head(collection) do |e|
+			heads += extract_words(e)
 		end
 		heads
 	end

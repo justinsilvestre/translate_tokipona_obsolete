@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   has_many :translations, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 end
